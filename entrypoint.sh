@@ -7,17 +7,17 @@ fi
 echo ${VER}
 
 if [[ -z "${Xray_Path}" ]]; then
-  Xray_Path="/s233"
+  Xray_Path="/1b03a0"
 fi
 echo ${Xray_Path}
 
 if [[ -z "${UUID}" ]]; then
-  UUID="5c301bb8-6c77-41a0-a606-4ba11bbab084"
+  UUID="fd220b15-d733-40cf-8991-647f00c23557"
 fi
 echo ${UUID}
 
 if [[ -z "${Share_Path}" ]]; then
-  Share_Path="/share233"
+  Share_Path="/Ml2KagRBKXAGQZg"
 fi
 echo ${Share_Path}
 
