@@ -9,13 +9,13 @@
     },
 
     "ProxySite": {
-      "description": "反代一个网站，例如：mirror.umd.edu，不填写表示使用本地静态网页文件。",
-      "value": "mirror.umd.edu",
+      "description": "反代一个网站，例如：mirror.umd.edu，不填写表示使用默认反代网站。",
+      "value": "",
       "required": false
     },
 
     "UUID": {
-      "description": "Vless uuid（http://www.uuid.online/在线生成）",
+      "description": "Vless uuid",
       "value": "fd220b15-d733-40cf-8991-647f00c23557"
     },
 
