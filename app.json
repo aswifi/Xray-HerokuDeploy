@@ -9,28 +9,28 @@
     },
 
     "ProxySite": {
-      "description": "反代一个网站，例如：mirror.umd.edu，不填写表示使用默认反代网站。",
+      "description": "反代一个网站，例如：mirror.umd.edu，不填写表示使用默认静态页面。",
       "value": "",
       "required": false
     },
 
     "UUID": {
-      "description": "Vless uuid",
+      "description": "Vless UUID",
       "value": "fd220b15-d733-40cf-8991-647f00c23557"
     },
 
     "Xray_Path": {
-      "description": "Path路径，默认/1b03a0,为了安全你也可以使用uuid替换1b03a0，/不能少。如果开启反代，不要与反代网站存在的uri相同",
+      "description": "Path路径，可修改。如果开启反代，不要与反代网站存在的uri相同",
       "value": "/1b03a0"
     },
     
     "Share_Path": {
-      "description": "Share path, /Ml2KagRBKXAGQZg/index.html订阅链接，/Ml2KagRBKXAGQZg/vless.png二维码",
+      "description": "分享路径：/Ml2KagRBKXAGQZg/index.html（订阅链接）；/Ml2KagRBKXAGQZg/vless.png（二维码）",
       "value": "/Ml2KagRBKXAGQZg"
     },
 
     "VER": {
-       "description": "Xray版本，默认latest安装最新版本，可以去https://github.com/XTLS/Xray-core/releases选择版本 （例如：1.2.2)",
+       "description": "Xray版本，默认latest安装最新版本，可以去https://github.com/XTLS/Xray-core/releases选择版本 （例如：1.4.2)",
        "value": "latest"
      }
   },
