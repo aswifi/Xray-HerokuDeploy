@@ -19,12 +19,12 @@
     },
 
     "Xray_Path": {
-      "description": "Path路径，默认/s233,为了安全你也可以使用uuid替换s233，/不能少。如果开启反代，不要与反代网站存在的uri相同",
+      "description": "Path路径，默认/1b03a0,为了安全你也可以使用uuid替换1b03a0，/不能少。如果开启反代，不要与反代网站存在的uri相同",
       "value": "/1b03a0"
     },
     
     "Share_Path": {
-      "description": "Share path, /share233/index.html订阅链接，/share233/vless.png二维码",
+      "description": "Share path, /Ml2KagRBKXAGQZg/index.html订阅链接，/Ml2KagRBKXAGQZg/vless.png二维码",
       "value": "/Ml2KagRBKXAGQZg"
     },
 
