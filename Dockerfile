@@ -8,6 +8,14 @@ RUN set -ex\
     && apt install -y nginx\
     && apt autoremove -y
 
+ENV ProxySite=mirror.umd.edu \
+    Vless_UUID= \
+    Vless_Path= \
+    Vmess_UUID= \
+    Vmess_Path= \
+    Share_Path= \
+    VER=latest
+
 COPY wwwroot.tar.gz /wwwroot/wwwroot.tar.gz
 COPY conf/ /conf
 COPY entrypoint.sh /entrypoint.sh
