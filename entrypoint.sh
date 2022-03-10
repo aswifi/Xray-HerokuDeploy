@@ -6,24 +6,34 @@ if [[ -z "${VER}" ]]; then
 fi
 echo ${VER}
 
-if [[ -z "${Xray_Path}" ]]; then
-  Xray_Path="/1b03a0"
+if [[ -z "${Vless_Path}" ]]; then
+  Vless_Path="/1a57eb"
 fi
-echo ${Xray_Path}
+echo ${Vless_Path}
 
-if [[ -z "${UUID}" ]]; then
-  UUID="fd220b15-d733-40cf-8991-647f00c23557"
+if [[ -z "${Vless_UUID}" ]]; then
+  Vless_UUID="5ea920a8-813e-4392-82af-5edd0f45cb2f"
 fi
-echo ${UUID}
+echo ${Vless_UUID}
+
+if [[ -z "${Vmess_Path}" ]]; then
+  Vmess_Path="/c8a681"
+fi
+echo ${Vmess_Path}
+
+if [[ -z "${Vmess_UUID}" ]]; then
+  Vmess_UUID="83bc88d5-d1ac-4813-9a5c-5b78939aed04"
+fi
+echo ${Vmess_UUID}
 
 if [[ -z "${Share_Path}" ]]; then
-  Share_Path="/Ml2KagRBKXAGQZg"
+  Share_Path="/Z6DT3s3lVsh"
 fi
 echo ${Share_Path}
 
 if [ "$VER" = "latest" ]; then
   VER=`wget -qO- "https://api.github.com/repos/XTLS/Xray-core/releases/latest" | sed -n -r -e 's/.*"tag_name".+?"([vV0-9\.]+?)".*/\1/p'`
-  [[ -z "${VER}" ]] && VER="v1.4.2"
+  [[ -z "${VER}" ]] && VER="v1.5.3"
 else
   VER="v$VER"
 fi
@@ -44,8 +54,10 @@ rm -rf wwwroot.tar.gz
 
 
 sed -e "/^#/d"\
-    -e "s/\${UUID}/${UUID}/g"\
-    -e "s|\${Xray_Path}|${Xray_Path}|g"\
+    -e "s/\${Vless_UUID}/${Vless_UUID}/g"\
+    -e "s|\${Vless_Path}|${Vless_Path}|g"\
+    -e "s/\${Vmess_UUID}/${Vmess_UUID}/g"\
+    -e "s|\${Vmess_Path}|${Vmess_Path}|g"\
     /conf/Xray.template.json >  /xraybin/config.json
 echo /xraybin/config.json
 cat /xraybin/config.json
@@ -60,24 +72,24 @@ fi
 
 sed -e "/^#/d"\
     -e "s/\${PORT}/${PORT}/g"\
-    -e "s|\${Xray_Path}|${Xray_Path}|g"\
+    -e "s|\${Vless_Path}|${Vless_Path}|g"\
+    -e "s|\${Vmess_Path}|${Vmess_Path}|g"\
     -e "s|\${Share_Path}|${Share_Path}|g"\
     -e "$s"\
     /conf/nginx.template.conf > /etc/nginx/conf.d/ray.conf
 echo /etc/nginx/conf.d/ray.conf
 cat /etc/nginx/conf.d/ray.conf
 
-
-if [ "$AppName" = "no" ]; then
-  echo "不生成分享链接"
-else
-  [ ! -d /wwwroot/${Share_Path} ] && mkdir /wwwroot/${Share_Path}
-  path=$(echo -n "${Xray_Path}?ed=2048" | sed -e 's/\//%2F/g' -e 's/=/%3D/g' -e 's/;/%3B/g' -e 's/\?/%3F/g')
-  link="vless://${UUID}@${AppName}.herokuapp.com:443?path=${path}&security=tls&encryption=none&type=ws#${AppName}-herokuapp" 
-  echo -n "${link}" | tr -d '\n' > /wwwroot/${Share_Path}/index.html
-  cat /wwwroot/${Share_Path}/index.html
-  echo -n "${link}" | qrencode -s 6 -o /wwwroot/${Share_Path}/vless.png
-fi
+[ ! -d /wwwroot/${Share_Path} ] && mkdir -p /wwwroot/${Share_Path}
+sed -e "/^#/d"\
+    -e "s|\${_Vless_Path}|${Vless_Path}|g"\
+    -e "s|\${_Vmess_Path}|${Vmess_Path}|g"\
+    -e "s/\${_Vless_UUID}/${Vless_UUID}/g"\
+    -e "s/\${_Vmess_UUID}/${Vmess_UUID}/g"\
+    -e "$s"\
+    /conf/share.html > /wwwroot/${Share_Path}/index.html
+echo /wwwroot/${Share_Path}/index.html
+cat /wwwroot/${Share_Path}/index.html
 
 cd /xraybin
 ./xray run -c ./config.json &
